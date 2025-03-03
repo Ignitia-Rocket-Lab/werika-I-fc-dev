@@ -45,14 +45,19 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined library search paths
 )
 
+file(GLOB_RECURSE SOURCE_FILES Core/Src/*.c)
+
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+    ${SOURCE_FILES}
+
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+    Core/Inc
 )
 
 # Add project symbols (macros)
@@ -67,4 +72,7 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
     # Add user defined libraries
 )
 
-include_directories($ENV{HOME}/Documents/MCUXpresso_SDK/core/CMSIS/Core/Include)
+# include_directories($ENV{HOME}/Documents/MCUXpresso_SDK/core/CMSIS/Core/Include)
+set(XC32_VERSION "v4.45")
+set(XC32_INCLUDE_DIR "/opt/microchip/xc32/${XC32_VERSION}/pic32c/include/CMSIS/Core/Include")
+include_directories(${XC32_INCLUDE_DIR})
